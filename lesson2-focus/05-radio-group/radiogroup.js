@@ -24,14 +24,17 @@
   }
 
   RadioGroup.prototype.handleKeyDown = function(e) {
+    let currentFocusID = this.focusedIdx
     switch(e.keyCode) {
 
       case VK_UP:
       case VK_LEFT: {
 
         e.preventDefault();
-
-        // This seems like a good place to do some stuff :)
+        currentFocusID = currentFocusID - 1
+        if (currentFocusID < 0) {
+          currentFocusID = this.buttons.length - 1
+        }
 
         break;
 
@@ -42,12 +45,17 @@
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
+        currentFocusID = currentFocusID + 1
+        if (currentFocusID >= this.buttons.length) {
+          currentFocusID = 0
+        }
 
         break;
       }
 
     }
+
+    this.focusedIdx = currentFocusID
 
     this.changeFocus(this.focusedIdx); // <-- Hmm, interesting...
   };
@@ -61,7 +69,7 @@
     this.focusedButton = this.buttons[idx];
     this.focusedButton.tabIndex = 0;
     this.focusedButton.focus();
-    this.focusedButton.setAttribute('checked', 'checked');
+    this.focusedButton.setAttribute('checked', true);
   };
 
   var group1 = new RadioGroup('#group1');

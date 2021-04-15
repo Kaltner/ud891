@@ -50,3 +50,20 @@ __After:__
     <li tabindex="-1">
     <li tabindex="-1">
 ```
+
+## Offscreen Content
+
+If you need to remove the ability to focus some offscreen element, you will need to hide it using CSS.
+
+## Modals and Keyboard Traps
+
+[Definition](http://webaim.org/standards/wcag/checklist#sc2.1.2)
+
+This behaviour is welcome on modals for instance, where you want to trap the keyboard inside a modal.
+
+To do that you will need to:
+1. Save the previous focused element 
+1. Close the modal when the user clicks outside, press a HTML button or press a keyboard button
+1. Figure out what is the first element of the modal
+1. Figure out what is the last element.
+1. Loop the user when they reach the first/last element and send them to the end/beginning of the tab
